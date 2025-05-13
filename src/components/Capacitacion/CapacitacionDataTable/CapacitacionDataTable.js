@@ -77,16 +77,14 @@ export function CapacitacionDataTable(props) {
       navigation.navigate(screensName.homeplan.capacitacionContenido, { id: id, nombre: nombre });
     };  
       
-    const goToVerItem = (id,nombrever) => {
-      navigation.navigate(screensName.homeplan.checklistitem, { id: id, nombrever: nombrever });
+    const goToAsignarEva = (id,nombre) => {
+      navigation.navigate(screensName.homeplan.capacitacionAsignarEvaluacion, { id: id, nombre: nombre });
     }; 
     
-    const goToAplicar = (id,nombrever,tipo) => {
-      if(tipo == "Capacitacion" || tipo == "Proceso"){
-        ToastAndroid.show( "es " +tipo+ "no se puede aplicar aqui" , ToastAndroid.SHORT);
-      }else{
-        navigation.navigate(screensName.homeplan.checklistaplicar, { id: id, nombrever:nombrever });
-      }      
+    const goToAsignarPart = (id,nombre) => {
+      
+        navigation.navigate(screensName.homeplan.capacitacionAsignarParticipante, { id: id, nombre:nombre });
+            
     };
 
     let nro=1;
@@ -104,7 +102,7 @@ export function CapacitacionDataTable(props) {
                 <DataTable.Title style={{ width: 100 }}>Contenido</DataTable.Title>
                 <DataTable.Title style={{ width: 100 }}>Información Actividad</DataTable.Title>
                 <DataTable.Title style={{ width: 100 }}>Asignar Evaluación</DataTable.Title>
-                <DataTable.Title style={{ width: 100 }}>Asignar Participante</DataTable.Title>
+                <DataTable.Title style={{ width: 100 }}>Participante</DataTable.Title>
                 <DataTable.Title style={{ width: 100 }}>Evaluación</DataTable.Title>
             </DataTable.Header>
             
@@ -117,8 +115,8 @@ export function CapacitacionDataTable(props) {
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToEliminar(item.id,item.nombreplan)} style={styles.btnEdit}>Eliminar</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToContenido(item.id,item.nombreplan)} style={styles.btnEdit}>Contenido</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToImprimir(item.id,item.nombreplan)} style={styles.btnEdit}>Información Actividad</Button></DataTable.Cell>
-                <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToVerItem(item.id,item.nombreplan)} style={styles.btnEdit}>Asignar Evaluación</Button></DataTable.Cell>
-                <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToAplicar(item.id,item.nombreplan)} style={styles.btnEdit}>Asignar Participante</Button></DataTable.Cell>
+                <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToAsignarEva(item.id,item.nombreplan)} style={styles.btnEdit}>Asignar Evaluación</Button></DataTable.Cell>
+                <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToAsignarPart(item.id,item.nombreplan)} style={styles.btnEdit}>Asignar Participante</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToImprimir2(item.id,item.nombreplan)} style={styles.btnEdit}>Evaluación</Button></DataTable.Cell>
                 </DataTable.Row>
             ))}

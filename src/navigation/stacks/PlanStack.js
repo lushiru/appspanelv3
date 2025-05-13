@@ -10,7 +10,8 @@ import { MejorasScreen, MejorasCrearScreen, MejorasEditarScreen,
   MejorasTomarFotoScreen, MejorasVerFotosScreen, MejorasPlanCrearScreen, MejorasPlanSeguimientoScreen, MejorasPlanEditarScreen
  } from "../../screens/Mejoras"; 
 import { CapacitacionScreen, CapacitacionCrearScreen, CapacitacionEditarScreen,
-  CapacitacionContenidoScreen, CapacitacionContenidoCrearScreen, CapacitacionContenidoEditarScreen
+  CapacitacionContenidoScreen, CapacitacionContenidoCrearScreen, CapacitacionContenidoEditarScreen, 
+  CapacitacionAsignarEvaluacionScreen, CapacitacionAsignarParticipanteScreen, 
   } from "../../screens/Capacitacion"; 
 import { screensName } from "../../utils";
 
@@ -50,6 +51,8 @@ export function PlanStack() {
       <Stack.Screen name={screensName.homeplan.capacitacionContenido} component={CapacitacionContenidoScreen} />
       <Stack.Screen name={screensName.homeplan.capacitacionContenidoCrear} component={CapacitacionContenidoCrearScreen} />
       <Stack.Screen name={screensName.homeplan.capacitacionContenidoEditar} component={CapacitacionContenidoEditarScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionAsignarEvaluacion} component={CapacitacionAsignarEvaluacionScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionAsignarParticipante} component={CapacitacionAsignarParticipanteScreen} />
     </Stack.Navigator>
   );
 }

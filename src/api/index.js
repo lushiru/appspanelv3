@@ -18,3 +18,5 @@ export * from "./mejorasfoto";
 export * from "./mejorasplan";
 export * from "./capacitacion";
 export * from "./capacitacioncontenido";
+export * from "./capacitacionasignarevaluacion";
+export * from "./capacitacionasignarparticipante";

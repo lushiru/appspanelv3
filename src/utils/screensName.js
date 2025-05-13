@@ -56,6 +56,9 @@ const home = {
     capacitacionContenido: "capacitacioncontenido",
     capacitacionContenidoCrear: "capacitacioncontenido-crear",
     capacitacionContenidoEditar: "capacitacioncontenido-editar",
+    capacitacionAsignarEvaluacion: "capacitacionasignarevaluacion",
+    capacitacionAsignarParticipante : "capacitacionasignarparticipante",
+    
   }
     
   const account = {
