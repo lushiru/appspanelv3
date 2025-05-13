@@ -1,2 +1,1 @@
-export * from "./CapacitacionDataTable";
 export * from "./CapacitacionContenidoDataTable";

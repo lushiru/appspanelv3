@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { DataTable, Button } from 'react-native-paper';
 import { storageCrtl, capacitacionCtrl } from "../../../api";
 import { screensName, ENV } from "../../../utils";
+import { useAuth } from "../../../hooks";
 import { styles } from "./CapacitacionDataTable.styles";
 import { openURL } from "expo-linking";
 
@@ -11,6 +12,8 @@ export function CapacitacionDataTable(props) {
 
     const { capacitacion, setReload  } = props;
     const navigation = useNavigation();
+
+    const { user } = useAuth();
 
   const [page, setPage] = useState(0);
   const [numberOfItemsPerPageList] = useState([6, 7, 8]);
@@ -32,7 +35,7 @@ export function CapacitacionDataTable(props) {
   const goToImprimir = async (id,nombre) => {
       
         const token = await storageCrtl.getToken();
-        openURL(`${ENV.IMPRIMIR}imprimirinfocurso.php?id=${id}&nombretext=${nombre}&token=${token}`);
+        openURL(`${ENV.IMPRIMIR}imprimirinfocurso.php?id=${id}&nombretext=${nombre}&nombreusuario=${user.usuario}&token=${token}`);
   
     };
 
@@ -43,7 +46,7 @@ export function CapacitacionDataTable(props) {
         try {
           const response = await capacitacionCtrl.leerimp(id);
           response.arrcontenidos.map((item)=>(
-            openURL(`${ENV.IMPRIMIR}imprimirverificacionpdfnuevo.php?id=${id}&nombretext=${nombre}&idverificacion=${item.id_verificacion}&token=${token}`)
+            openURL(`${ENV.IMPRIMIR}imprimirverificacionpdfnuevo.php?id=${id}&nombretext=${nombre}&nombreusuario=${user.usuario}&idverificacion=${item.id_verificacion}&token=${token}`)
           ));
         } catch (error) {
           ToastAndroid.show( "Error " + error , ToastAndroid.SHORT);
@@ -69,6 +72,10 @@ export function CapacitacionDataTable(props) {
           ToastAndroid.show( "Error " + error , ToastAndroid.SHORT);
         }  
       }
+
+    const goToContenido = (id,nombre) => {
+      navigation.navigate(screensName.homeplan.capacitacionContenido, { id: id, nombre: nombre });
+    };  
       
     const goToVerItem = (id,nombrever) => {
       navigation.navigate(screensName.homeplan.checklistitem, { id: id, nombrever: nombrever });
@@ -108,7 +115,7 @@ export function CapacitacionDataTable(props) {
                 <DataTable.Cell style={{ width: 100 }}>{item.tipo}</DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToEditar(item.id)} style={styles.btnEdit}>Editar</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToEliminar(item.id,item.nombreplan)} style={styles.btnEdit}>Eliminar</Button></DataTable.Cell>
-                <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToEliminar(item.id,item.nombreplan)} style={styles.btnEdit}>Contenido</Button></DataTable.Cell>
+                <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToContenido(item.id,item.nombreplan)} style={styles.btnEdit}>Contenido</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToImprimir(item.id,item.nombreplan)} style={styles.btnEdit}>Información Actividad</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToVerItem(item.id,item.nombreplan)} style={styles.btnEdit}>Asignar Evaluación</Button></DataTable.Cell>
                 <DataTable.Cell style={{ width: 100 }}><Button mode="contained" onPress={() => goToAplicar(item.id,item.nombreplan)} style={styles.btnEdit}>Asignar Participante</Button></DataTable.Cell>

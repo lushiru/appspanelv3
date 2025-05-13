@@ -9,7 +9,9 @@ import { ChecklistScreen, CheckListCrearScreen, CheckListEditarScreen,
 import { MejorasScreen, MejorasCrearScreen, MejorasEditarScreen, 
   MejorasTomarFotoScreen, MejorasVerFotosScreen, MejorasPlanCrearScreen, MejorasPlanSeguimientoScreen, MejorasPlanEditarScreen
  } from "../../screens/Mejoras"; 
-import { CapacitacionScreen, CapacitacionCrearScreen, CapacitacionEditarScreen,  } from "../../screens/Capacitacion"; 
+import { CapacitacionScreen, CapacitacionCrearScreen, CapacitacionEditarScreen,
+  CapacitacionContenidoScreen, CapacitacionContenidoCrearScreen, CapacitacionContenidoEditarScreen
+  } from "../../screens/Capacitacion"; 
 import { screensName } from "../../utils";
 
 const Stack = createNativeStackNavigator();
@@ -45,6 +47,9 @@ export function PlanStack() {
       <Stack.Screen name={screensName.homeplan.capacitacion} component={CapacitacionScreen} />
       <Stack.Screen name={screensName.homeplan.capacitacionCrear} component={CapacitacionCrearScreen} />
       <Stack.Screen name={screensName.homeplan.capacitacionEditar} component={CapacitacionEditarScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionContenido} component={CapacitacionContenidoScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionContenidoCrear} component={CapacitacionContenidoCrearScreen} />
+      <Stack.Screen name={screensName.homeplan.capacitacionContenidoEditar} component={CapacitacionContenidoEditarScreen} />
     </Stack.Navigator>
   );
 }
